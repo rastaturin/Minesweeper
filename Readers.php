@@ -1,28 +1,12 @@
 <?php
 
 
-interface Reader {
+abstract class AbstractReader {
     /**
      * @param string|array $prompt
      * @return string
      */
-    public function getLine($prompt);
-
-    /**
-     * @param string|array
-     */
-    public function output($string);
-}
-
-class Console implements Reader {
-    /**
-     * @param string|array $prompt
-     * @return string
-     */
-    public function getLine($prompt) {
-        $this->output($prompt);
-        return readline('>');
-    }
+    abstract public function getLine($prompt);
 
     /**
      * @param string|array $output;
@@ -34,6 +18,17 @@ class Console implements Reader {
         foreach ($output as $row) {
             echo $row . PHP_EOL;
         }
+    }
+}
+
+class Console extends AbstractReader {
+    /**
+     * @param string|array $prompt
+     * @return string
+     */
+    public function getLine($prompt) {
+        $this->output($prompt);
+        return readline('>');
     }
 }
 
@@ -64,6 +59,4 @@ class FileReader extends Console {
         return $command;
     }
 }
-
-
 

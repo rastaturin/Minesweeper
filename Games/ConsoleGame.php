@@ -2,18 +2,18 @@
 
 namespace Games;
 
-use Reader;
+use AbstractReader;
 
 abstract class ConsoleGame {
     /**
-     * @var Reader
+     * @var AbstractReader
      */
     protected $reader;
 
     /**
-     * @param Reader $reader
+     * @param AbstractReader $reader
      */
-    public function __construct(Reader $reader) {
+    public function __construct(AbstractReader $reader) {
         $this->reader = $reader;
     }
 
